@@ -1,44 +1,45 @@
 ﻿using System;
+using Admin;
+using User;
 using System.Text.Json;
-
 namespace MyApp 
 {
-    class Users
-    {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
-        Users(int id,string name,string email,string password)
-        {
-            Id = id;Name = name;Email = email;Password = password;
-        }
-        Users() { }
-
-    }
-
-   class User : Users
-   {
- 
-
-   }
+   
     internal class Program
     {
-
         static void Main(string[] args)
         {
-            User[] username = { 
-                new User{ Name = "Nihad",password="Nihad1368"}
-            };
-            var json = JsonSerializer.Serialize(username);
-            File.WriteAllText("file.txt", json);
-            var text = File.ReadAllText("file.txt");
-            User[]? user = JsonSerializer.Deserialize<User[]>(text);
-            foreach (User item in user)
-            {
-                Console.WriteLine(item.Name);
-                Console.WriteLine(item.password);
-            }
+             Users anmes = new Users();
+             anmes.select();
+            //Console.WriteLine("1) Admin\n2) Username");
+            //int num = Convert.ToInt32(Console.ReadLine());
+            //if (num==1)
+            //{
+                
+            //}
+            //else
+
+            
+            //anmes.copyfile("file.txt", "copyfile.txt");
+            //Admin.Admin[] admin = {
+            //    new Admin.Admin( 2,"Nicat","a.gmail.com","Nicat1369")
+            //};
+            //var json = JsonSerializer.Serialize(admin);
+            //File.AppendAllText("admin.txt", json + '\n');
+            //string[] text = File.ReadAllLines("file.txt");
+            //foreach (var item in text)
+            //{
+            //    Users []?user = JsonSerializer.Deserialize<Users[]>(item);
+            //    foreach (var item2 in user)
+            //    {
+            //        if (item2.Name == "Nihad")
+            //        {
+            //            Console.WriteLine("Tapildi");
+            //        }
+            //        else continue;
+            //    }
+            //}
+
         }
     }
 }
