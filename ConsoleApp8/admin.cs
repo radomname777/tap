@@ -22,6 +22,13 @@ namespace Admin
             }
 
         }
+        private bool likepost()
+        {
+            Console.WriteLine("1)Like? ");
+            int num = Convert.ToInt32(Console.ReadLine());
+            if (num==1) return true;
+            return false;
+        }
         public void change(string filename, string filename2, int num)
         {
             copyfile(filename, filename2);
@@ -30,7 +37,11 @@ namespace Admin
             for (int i = 0; i < text.Length; i++)
             {
                 Admin[]? user = JsonSerializer.Deserialize<Admin[]>(text[i]);
-                if (i == num)user[0].ViewCount++;
+                if (i == num)
+                {
+                    if (likepost()) user[0].LikeCount++;
+                    user[0].ViewCount++;
+                }
                 var json = JsonSerializer.Serialize(user);
                 File.AppendAllText(filename, json + '\n');
             }

@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace User
 {
-
     class Users : Human.Human
     {
-        
         //private int number;
         public int FileId()
         {
@@ -21,16 +19,11 @@ namespace User
                 Users[]? admin = JsonSerializer.Deserialize<Users[]>(text[i]);
                 foreach (var item2 in admin)
                 {
-                    if (text.Length-1==i)
-                    {
-                        Console.WriteLine("Burda");
-                        return item2.ID+=1;
-                    }
+                    if (text.Length-1==i) return item2.ID+=1;
                 }
             }
             return 1;
         }
-
         public Users(){}
         public Users(int id, string email, string name, string passsword) : base(id, email,name,passsword) {}
         public void IDSel()
@@ -39,16 +32,13 @@ namespace User
             foreach (var item in text)
             {
                 Users[]? user = JsonSerializer.Deserialize<Users[]>(item);
-                foreach (var item2 in user)
-                {
-                    Console.WriteLine($"\t{item2.ID}");
-                }
+                foreach (var item2 in user)Console.WriteLine($"\t{item2.ID}");  
             }
         }
         public int SignIn()
         {
             Console.Write("Enter Name: "); var Name = Console.ReadLine();
-            string[] text = File.ReadAllLines("admin.txt");
+            string[] text = File.ReadAllLines("file.txt");
             for (int i = 0; i < text.Length; i++)
             {
                 Users[]? admin = JsonSerializer.Deserialize<Users[]>(text[i]);
@@ -56,8 +46,12 @@ namespace User
                 {
                     if (item2.Name == Name)
                     {
-                        Console.Write("Enter password"); var password = Console.ReadLine();
-                        if (item2.Password == password) return i;
+                        Console.WriteLine(item2.Password);
+                        Console.Write("Enter password: "); var password = Console.ReadLine();
+                        if (item2.Password == password) {
+                            start(); 
+                            return i; 
+                        }
                         return -1;
                     }
                     else if (admin == null) return -1;
@@ -73,11 +67,10 @@ namespace User
             Console.Write("Enter Email: "); Email = Console.ReadLine();
             ID = FileId();
             Users[] user = {
-                new Users( this.ID,this.Name,this.Email,this.Email)
+                new Users( this.ID,this.Email,this.Name,this.Password)
             };
             var json = JsonSerializer.Serialize(user);
             File.AppendAllText("file.txt", json + '\n');
-
         }
         public int AdminID()
         {
@@ -89,7 +82,10 @@ namespace User
                 Users[]? admin = JsonSerializer.Deserialize<Users[]>(text[i]);
                 foreach (var item2 in admin)
                 {
-                    if (item2.ID == id) return i;
+                    if (item2.ID == id)
+                    {
+                        return i;
+                    }
                     else if (admin == null) return -1;
                     else continue;
                 }
@@ -106,8 +102,8 @@ namespace User
         public void start()
         {
             int num = AdminID();
-            Admin.Admin a = new Admin.Admin();
-            a.change("admin.txt", "copyfile.txt", num);
+            Admin.Admin admin = new Admin.Admin();
+            admin.change("admin.txt", "copyfile.txt", num);
         }
     }
 }

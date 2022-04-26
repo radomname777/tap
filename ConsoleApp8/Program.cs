@@ -9,8 +9,8 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
-             Users anmes = new Users();
-             anmes.select();
+            Users anmes = new Users();
+            anmes.select();
             //Console.WriteLine("1) Admin\n2) Username");
             //int num = Convert.ToInt32(Console.ReadLine());
             //if (num==1)
@@ -18,8 +18,6 @@ namespace MyApp
                 
             //}
             //else
-
-            
             //anmes.copyfile("file.txt", "copyfile.txt");
             //Admin.Admin[] admin = {
             //    new Admin.Admin( 2,"Nicat","a.gmail.com","Nicat1369")

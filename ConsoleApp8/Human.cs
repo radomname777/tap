@@ -16,8 +16,8 @@ namespace Human
         public Human(int id,string email,string name ,string passsword)
         {
             ID = id;
-            Email = email;
             Name= name;
+            Email = email;
             Password = passsword;
         }
         //public int FileName(string filename)
