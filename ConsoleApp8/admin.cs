@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using System.Text.Json;
 namespace Admin
 {
-    class Admin : Post.Post
+    class Admin : Human.Human
     {
-
+        public int LikeCount { get; set; } = 0;
+        public int ViewCount { get; set; } = 0;
+        Post.Post post = new Post.Post();
         private void copyfile(string filename, string filename2)
         {
-
             File.WriteAllText(filename2, "");
             string[] text = File.ReadAllLines(filename);
             foreach (var line in text)
@@ -20,7 +21,6 @@ namespace Admin
                 var json = JsonSerializer.Serialize(user);
                 File.AppendAllText(filename2, json + '\n');
             }
-
         }
         private bool likepost()
         {
@@ -45,6 +45,7 @@ namespace Admin
                 var json = JsonSerializer.Serialize(user);
                 File.AppendAllText(filename, json + '\n');
             }
+            post.Postfiel();
         }
         public Admin()
         {
@@ -52,9 +53,7 @@ namespace Admin
         }
         public Admin(int id, string email, string name, string passsword) : base(id, email, name, passsword)
         {
-            //post.id = id;
-            //post.Likecount = 0;
-            //post.ViewCount = 0;
+
         }
     }
 }

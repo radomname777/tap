@@ -12,7 +12,7 @@ namespace Human
         public string? Email { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-        public Human() { }
+        public Human() {}
         public Human(int id,string email,string name ,string passsword)
         {
             ID = id;

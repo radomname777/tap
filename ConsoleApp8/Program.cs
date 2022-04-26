@@ -9,16 +9,15 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
-            Users anmes = new Users();
-            anmes.select();
-            //Console.WriteLine("1) Admin\n2) Username");
-            //int num = Convert.ToInt32(Console.ReadLine());
-            //if (num==1)
-            //{
-                
-            //}
-            //else
-            //anmes.copyfile("file.txt", "copyfile.txt");
+            //Users anmes = new Users();
+            //anmes.select();
+            Post.Post a
+                = new Post.Post();
+
+            a.Postfiel();
+
+ 
+            //anms.copyfile("file.txt", "copyfile.txt");
             //Admin.Admin[] admin = {
             //    new Admin.Admin( 2,"Nicat","a.gmail.com","Nicat1369")
             //};
