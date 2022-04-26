@@ -60,7 +60,6 @@ namespace Admin
                     Console.WriteLine(item2.Name);
                     if (item2.Name == Name)
                     {
-                        Console.WriteLine(item2.Password);
                         Console.Write("Enter password: "); var password = Console.ReadLine();
                         if (item2.Password == password)
                         {

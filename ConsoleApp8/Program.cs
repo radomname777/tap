@@ -10,10 +10,12 @@ namespace MyApp
         {
             while (true)
             {
+                Console.Clear();
                 Console.WriteLine("1) Admin 2)User");
                 var select = Convert.ToInt32(Console.ReadLine());
                 if (select == 2)
                 {
+                    
                     Users user = new Users();
                     user.select();
                 }
@@ -21,7 +23,6 @@ namespace MyApp
                     admin.select();
                 }
                 else continue;
-                
             }
             //Users anmes = new Users();
             //anmes.select();

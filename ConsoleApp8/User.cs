@@ -46,7 +46,6 @@ namespace User
                 {
                     if (item2.Name == Name)
                     {
-                        Console.WriteLine(item2.Password);
                         Console.Write("Enter password: "); var password = Console.ReadLine();
                         if (item2.Password == password) {
                             start(); 
@@ -105,6 +104,7 @@ namespace User
         }
         public void start()
         {
+           
             int num = AdminID();
             Admin.Admin admin = new Admin.Admin();
             admin.change("admin.txt", "copyfile.txt", num);
