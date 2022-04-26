@@ -14,6 +14,19 @@ namespace Post
         public int LikeCount { get; set; } = 0;
         public int ViewCount { get; set; } = 0;
         public Post(){}
+        public void print(int id)
+        {
+            string[] text = File.ReadAllLines("Postfiel.txt");
+            for (int i = 0; i < text.Length; i++)
+            {
+                Post[]? post = JsonSerializer.Deserialize<Post[]>(text[i]);
+                if (post[0].Id==id)
+                {
+                    Console.WriteLine($"ID: {post[0].Id}\nDate: {post[0].CreationDateTime}\nLike count: {post[0].LikeCount}\nView count: {post[0].ViewCount}");
+                    return;
+                }
+            }
+        }
         public Post(int id, int likecount=0,int viewcount=0)
         {
             Id = id;
@@ -28,12 +41,10 @@ namespace Post
             for (int i = 0; i < text.Length; i++)
             {
                 Admin.Admin[]? admin = JsonSerializer.Deserialize<Admin.Admin[]>(text[i]);
-                if (i==text.Length-1)
-                {
-                    Post[] admin2 = {new Post(admin[0].ID, admin[0].LikeCount,admin[0].ViewCount)};
-                    var json2 = JsonSerializer.Serialize(admin2);
-                    File.WriteAllText("Postfiel.txt", json2 + '\n');
-                }
+                Post[] admin2 = {new Post(admin[0].ID, admin[0].LikeCount,admin[0].ViewCount)};
+                var json2 = JsonSerializer.Serialize(admin2);
+                File.AppendAllText("Postfiel.txt", json2 + '\n');
+                
             }
         }
     }

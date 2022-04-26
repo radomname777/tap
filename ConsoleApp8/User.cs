@@ -11,7 +11,7 @@ namespace User
     class Users : Human.Human
     {
         //private int number;
-        public int FileId()
+        private int FileId()
         {
             string[] text = File.ReadAllLines("file.txt");
             for (int i = 0; i < text.Length; i++)
@@ -94,10 +94,14 @@ namespace User
         }
         public void select()
         {
-            Console.WriteLine("1)sign in\n2)sign up");
-            int num = Convert.ToInt32(Console.ReadLine());
-            if (num == 1) SignIn();
-            else SignUp();
+            do
+            {
+                Console.WriteLine("1)sign in\n2)sign up");
+                int num = Convert.ToInt32(Console.ReadLine());
+                if (num == 1) { SignIn(); break; }
+                else if (num==2) { SignUp(); break; }
+                else continue;
+            } while (true);
         }
         public void start()
         {

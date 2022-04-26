@@ -1,5 +1,4 @@
 ﻿using System;
-using Admin;
 using User;
 using System.Text.Json;
 namespace MyApp 
@@ -9,14 +8,23 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
+            while (true)
+            {
+                Console.WriteLine("1) Admin 2)User");
+                var select = Convert.ToInt32(Console.ReadLine());
+                if (select == 2)
+                {
+                    Users user = new Users();
+                    user.select();
+                }
+                else if (select == 1) { Admin.Admin admin = new Admin.Admin();
+                    admin.select();
+                }
+                else continue;
+                
+            }
             //Users anmes = new Users();
             //anmes.select();
-            Post.Post a
-                = new Post.Post();
-
-            a.Postfiel();
-
- 
             //anms.copyfile("file.txt", "copyfile.txt");
             //Admin.Admin[] admin = {
             //    new Admin.Admin( 2,"Nicat","a.gmail.com","Nicat1369")
