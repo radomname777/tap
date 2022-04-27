@@ -23,6 +23,7 @@ namespace Post
                 if (post[0].Id==id)
                 {
                     Console.WriteLine($"ID: {post[0].Id}\nDate: {post[0].CreationDateTime}\nLike count: {post[0].LikeCount}\nView count: {post[0].ViewCount}");
+                    Thread.Sleep(1000);
                     return;
                 }
             }

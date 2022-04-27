@@ -29,7 +29,7 @@ namespace Admin
             if (num==1) return true;
             return false;
         }
-        private void Printpost(int id) => post.print(id);
+        public void Printpost(int id) => post.print(id);
         private int FileId()
         {
             string[] text = File.ReadAllLines("admin.txt");
@@ -50,15 +50,14 @@ namespace Admin
         }
         public int SignIn()
         {
-            Console.Write("Enter Name: "); var Name = Console.ReadLine();
+            Console.Write("Enter Name: "); var Name2 = Console.ReadLine();
             string[] text = File.ReadAllLines("admin.txt");
             for (int i = 0; i < text.Length; i++)
             {
                 Admin[]? admin = JsonSerializer.Deserialize<Admin[]>(text[i]);
                 foreach (var item2 in admin)
                 {
-                    Console.WriteLine(item2.Name);
-                    if (item2.Name == Name)
+                    if (item2.Name == Name2)
                     {
                         Console.Write("Enter password: "); var password = Console.ReadLine();
                         if (item2.Password == password)
@@ -68,10 +67,11 @@ namespace Admin
                             return i;
                         }
                         Console.WriteLine("No Admin!");
+                        Thread.Sleep(1000);
                         return -1;
                     }
                     else if (admin == null) return -1;
-                    else continue;
+                    else { Console.Clear(); continue; }
                 }
             }
             return -1;
@@ -97,7 +97,6 @@ namespace Admin
                 new Admin( this.ID,this.Email,this.Name,this.Password)
             };
             var json = JsonSerializer.Serialize(user);
-            Console.WriteLine("aa");
             File.AppendAllText("admin.txt", json + '\n');
             Postfile();
         }
@@ -119,13 +118,7 @@ namespace Admin
             }
             Postfile();
         }
-        public Admin()
-        {
-
-        }
-        public Admin(int id, string email, string name, string passsword) : base(id, email, name, passsword)
-        {
-
-        }
+        public Admin(){}
+        public Admin(int id, string email, string name, string passsword) : base(id, email, name, passsword){}
     }
 }

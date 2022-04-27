@@ -4,29 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-
-
 namespace User
 {
     class Users : Human.Human
     {
-        //private int number;
         private int FileId()
         {
             string[] text = File.ReadAllLines("file.txt");
             for (int i = 0; i < text.Length; i++)
             {
                 Users[]? admin = JsonSerializer.Deserialize<Users[]>(text[i]);
-                foreach (var item2 in admin)
-                {
-                    if (text.Length-1==i) return item2.ID+=1;
-                }
+                foreach (var item2 in admin) if (text.Length-1==i) return item2.ID+=1;
             }
             return 1;
         }
         public Users(){}
         public Users(int id, string email, string name, string passsword) : base(id, email,name,passsword) {}
-        public void IDSel()
+        private void IDSel()
         {
             string[] text = File.ReadAllLines("admin.txt");
             foreach (var item in text)
@@ -51,10 +45,12 @@ namespace User
                             start(); 
                             return i; 
                         }
+                        Console.WriteLine("No User!");
+                        Thread.Sleep(1000);
                         return -1;
                     }
                     else if (admin == null) return -1;
-                    else continue;
+                    else { Console.Clear(); continue; };
                 }
             }
             return -1;
@@ -71,7 +67,7 @@ namespace User
             var json = JsonSerializer.Serialize(user);
             File.AppendAllText("file.txt", json + '\n');
         }
-        public int AdminID()
+        private int AdminID()
         {
             IDSel();
             Console.Write("Enter ID: "); int id = Convert.ToInt32(Console.ReadLine());
@@ -81,30 +77,29 @@ namespace User
                 Users[]? admin = JsonSerializer.Deserialize<Users[]>(text[i]);
                 foreach (var item2 in admin)
                 {
-                    if (item2.ID == id)
-                    {
-                        return i;
-                    }
+                    if (item2.ID == id)return i;
                     else if (admin == null) return -1;
                     else continue;
                 }
             }
+            Console.WriteLine("NO ID");
+            Thread.Sleep(1000);
             return -1;
         }
         public void select()
         {
             do
             {
+                Console.Clear();
                 Console.WriteLine("1)sign in\n2)sign up");
                 int num = Convert.ToInt32(Console.ReadLine());
                 if (num == 1) { SignIn(); break; }
-                else if (num==2) { SignUp(); break; }
+                else if (num == 2) { SignUp(); break; }
                 else continue;
             } while (true);
         }
         public void start()
         {
-           
             int num = AdminID();
             Admin.Admin admin = new Admin.Admin();
             admin.change("admin.txt", "copyfile.txt", num);

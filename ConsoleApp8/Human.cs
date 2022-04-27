@@ -9,9 +9,61 @@ namespace Human
     class Human
     {
         public int ID { get; set; }
-        public string? Email { get; set; }
-        public string Name { get; set; }
-        public string Password { get; set; }
+        private string _gmail;
+        public string  Email
+        {
+            get => _gmail;
+            set
+            {
+                while (true)
+                {
+                    if (value.Contains('@')) break;
+                    else
+                    {
+                        Console.WriteLine("Enter Email: ");
+                        value = Console.ReadLine();
+                        continue;
+                    }
+                }
+                _gmail = value;
+            }
+        }
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set
+               {
+                if (value.Length < 3)
+                {
+                    while (value.Length < 3)
+                    {
+                        Console.WriteLine("Enter name (<=3): ");
+                        value = Console.ReadLine();
+                        Console.Clear();
+                    }
+
+                }
+                _name = value;
+            }
+        }
+
+        private string _password;
+        public string Password
+        {
+            get { return _password; }
+            set
+            {
+                while (value.Length <= 6)
+                {
+                    Console.WriteLine("Enter Password (<= 6): ");
+                    value = Console.ReadLine();
+                    Console.Clear();
+                }
+                _password = value;
+            }
+        }
+
         public Human() {}
         public Human(int id,string email,string name ,string passsword)
         {
@@ -20,31 +72,6 @@ namespace Human
             Email = email;
             Password = passsword;
         }
-        //public int FileName(string filename)
-        //{
-        //    Console.Write("Enter Name: "); var name = Console.ReadLine();
-        //    string[] text = File.ReadAllLines(filename);
-        //    for (int i = 0; i < text.Length; i++)
-        //    {
-        //        Human[]? user = JsonSerializer.Deserialize<Human[]>(text[i]);
-        //        if (user == null) return -1;
-        //        foreach (var item2 in user)
-        //        {
-        //            if (item2.Name == name)
-        //            {
-        //                Console.Write("Enter password: "); var password = Console.ReadLine();
-        //                if (item2.Password == password)
-        //                {
-        //                    Console.WriteLine("Tapildi");
-        //                    return i;
-        //                }
-        //                else return -1;
-        //            }
-        //            else continue;
-        //        }
-        //    }
-        //    return -1;
-        //}
     }
 
 }
